@@ -15,7 +15,7 @@ args = parser.parse_args()
 def create_n_links(n, base_file='base.xml'):
     # Parse from path
     mjcf_model = mjcf.from_path(base_file)
-    mjcf_model.option.timestep=str(1e-3)
+    mjcf_model.option.timestep=str(1e-2)
     even_link_quat = "0.707107 0 0 0.707107"
     odd_link_quat = "1 0 0 0"
     body = ""
@@ -55,8 +55,9 @@ with open("json/data.txt", "w+") as file_:
     d = {"meshes": [], "body_params": []}
     for index, position in enumerate(physics.named.data.xpos[1:]):
         d["meshes"].append({
-            'mesh': f'link_lab_{"even" if index%2==0 else "odd"}.msh',
+            'mesh': 'link_lab.msh',
             'position': position.tolist(),
+            'rotation': [0, 0, 0 if index%2==0 else 90],
             'scale': 0.001,
             'body_id': index+1,
             'boundary_id': index+1})
@@ -64,11 +65,9 @@ with open("json/data.txt", "w+") as file_:
             "name": "link_lab",
             "id": index+1,
             "E": 2e11,
-            "nu": 0.3,
-            "rho": 7750 })
+            "nu": 0.295,
+            "rho": 8050 })
     json.dump(d, file_, indent=2)
-
-exit()
 
 model = mujoco_py.load_model_from_path(xml_path)
 sim = mujoco_py.MjSim(model)
@@ -78,8 +77,8 @@ scale = 2
 timestart = time.time()
 for i in range(1000):
     # sim.data.ctrl[:] = (scale*np.random.rand(2)-scale/2).tolist()
-    sim.data.ctrl[:] = [0, 0]
+    sim.data.ctrl[:] = [0.1, 0]
     sim.forward()
     sim.step()
-    viewer.render()
+    # viewer.render()
 print(time.time() - timestart)

@@ -5,9 +5,9 @@
         "is_time_dependent": true,
         "dirichlet_boundary": [{
             "id": 1,
-            "value": ["0", "0", "0"]
+            "value": ["0.5*t", "0", "0"]
         }],
-        "rhs": [0, 9.81, 0]
+        "rhs": [0, 0, 9.81]
     },
     "tend": 1,
     "dt": 1e-2,
@@ -22,195 +22,245 @@
     "solver_type": "Eigen::SparseLU",
 
     "has_collision": true,
-    "dhat": 1e-3,
+    "dhat": 1e-5,
 
     "mu": 0.8,
     "normalize_mesh": false,
 
-     "meshes": [
-    {
-      "mesh": "link_lab_even.msh",
-      "position": [
-        0.0,
-        0.0,
-        0.6561999999999999
-      ],
-      "scale": 0.001,
-      "body_id": 1,
-      "boundary_id": 1
-    },
-    {
-      "mesh": "link_lab_odd.msh",
-      "position": [
-        -0.0,
-        0.0,
-        0.6050999999999999
-      ],
-      "scale": 0.001,
-      "body_id": 2,
-      "boundary_id": 2
-    },
-    {
-      "mesh": "link_lab_even.msh",
-      "position": [
-        -0.0,
-        0.0,
-        0.5539999999999998
-      ],
-      "scale": 0.001,
-      "body_id": 3,
-      "boundary_id": 3
-    },
-    {
-      "mesh": "link_lab_odd.msh",
-      "position": [
-        -0.0,
-        0.0,
-        0.5028999999999998
-      ],
-      "scale": 0.001,
-      "body_id": 4,
-      "boundary_id": 4
-    },
-    {
-      "mesh": "link_lab_even.msh",
-      "position": [
-        -0.0,
-        0.0,
-        0.4517999999999998
-      ],
-      "scale": 0.001,
-      "body_id": 5,
-      "boundary_id": 5
-    },
-    {
-      "mesh": "link_lab_odd.msh",
-      "position": [
-        -0.0,
-        0.0,
-        0.40069999999999983
-      ],
-      "scale": 0.001,
-      "body_id": 6,
-      "boundary_id": 6
-    },
-    {
-      "mesh": "link_lab_even.msh",
-      "position": [
-        -0.0,
-        0.0,
-        0.34959999999999986
-      ],
-      "scale": 0.001,
-      "body_id": 7,
-      "boundary_id": 7
-    },
-    {
-      "mesh": "link_lab_odd.msh",
-      "position": [
-        -0.0,
-        0.0,
-        0.2984999999999999
-      ],
-      "scale": 0.001,
-      "body_id": 8,
-      "boundary_id": 8
-    },
-    {
-      "mesh": "link_lab_even.msh",
-      "position": [
-        -0.0,
-        0.0,
-        0.24739999999999987
-      ],
-      "scale": 0.001,
-      "body_id": 9,
-      "boundary_id": 9
-    },
-    {
-      "mesh": "link_lab_odd.msh",
-      "position": [
-        -0.0,
-        0.0,
-        0.19629999999999986
-      ],
-      "scale": 0.001,
-      "body_id": 10,
-      "boundary_id": 10
-    }
-  ],
-  "body_params": [
-    {
-      "name": "link_lab",
-      "id": 1,
-      "E": 200000000000.0,
-      "nu": 0.3,
-      "rho": 7750
-    },
-    {
-      "name": "link_lab",
-      "id": 2,
-      "E": 200000000000.0,
-      "nu": 0.3,
-      "rho": 7750
-    },
-    {
-      "name": "link_lab",
-      "id": 3,
-      "E": 200000000000.0,
-      "nu": 0.3,
-      "rho": 7750
-    },
-    {
-      "name": "link_lab",
-      "id": 4,
-      "E": 200000000000.0,
-      "nu": 0.3,
-      "rho": 7750
-    },
-    {
-      "name": "link_lab",
-      "id": 5,
-      "E": 200000000000.0,
-      "nu": 0.3,
-      "rho": 7750
-    },
-    {
-      "name": "link_lab",
-      "id": 6,
-      "E": 200000000000.0,
-      "nu": 0.3,
-      "rho": 7750
-    },
-    {
-      "name": "link_lab",
-      "id": 7,
-      "E": 200000000000.0,
-      "nu": 0.3,
-      "rho": 7750
-    },
-    {
-      "name": "link_lab",
-      "id": 8,
-      "E": 200000000000.0,
-      "nu": 0.3,
-      "rho": 7750
-    },
-    {
-      "name": "link_lab",
-      "id": 9,
-      "E": 200000000000.0,
-      "nu": 0.3,
-      "rho": 7750
-    },
-    {
-      "name": "link_lab",
-      "id": 10,
-      "E": 200000000000.0,
-      "nu": 0.3,
-      "rho": 7750
-    }
-  ],
+    "meshes": [
+      {
+        "mesh": "link_lab.msh",
+        "position": [
+          0.0,
+          0.0,
+          0.6561999999999999
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": 0.001,
+        "body_id": 1,
+        "boundary_id": 1
+      },
+      {
+        "mesh": "link_lab.msh",
+        "position": [
+          -0.0,
+          0.0,
+          0.6050999999999999
+        ],
+        "rotation": [
+          0,
+          0,
+          90
+        ],
+        "scale": 0.001,
+        "body_id": 2,
+        "boundary_id": 2
+      },
+      {
+        "mesh": "link_lab.msh",
+        "position": [
+          -0.0,
+          0.0,
+          0.5539999999999998
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": 0.001,
+        "body_id": 3,
+        "boundary_id": 3
+      },
+      {
+        "mesh": "link_lab.msh",
+        "position": [
+          -0.0,
+          0.0,
+          0.5028999999999998
+        ],
+        "rotation": [
+          0,
+          0,
+          90
+        ],
+        "scale": 0.001,
+        "body_id": 4,
+        "boundary_id": 4
+      },
+      {
+        "mesh": "link_lab.msh",
+        "position": [
+          -0.0,
+          0.0,
+          0.4517999999999998
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": 0.001,
+        "body_id": 5,
+        "boundary_id": 5
+      },
+      {
+        "mesh": "link_lab.msh",
+        "position": [
+          -0.0,
+          0.0,
+          0.40069999999999983
+        ],
+        "rotation": [
+          0,
+          0,
+          90
+        ],
+        "scale": 0.001,
+        "body_id": 6,
+        "boundary_id": 6
+      },
+      {
+        "mesh": "link_lab.msh",
+        "position": [
+          -0.0,
+          0.0,
+          0.34959999999999986
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": 0.001,
+        "body_id": 7,
+        "boundary_id": 7
+      },
+      {
+        "mesh": "link_lab.msh",
+        "position": [
+          -0.0,
+          0.0,
+          0.2984999999999999
+        ],
+        "rotation": [
+          0,
+          0,
+          90
+        ],
+        "scale": 0.001,
+        "body_id": 8,
+        "boundary_id": 8
+      },
+      {
+        "mesh": "link_lab.msh",
+        "position": [
+          -0.0,
+          0.0,
+          0.24739999999999987
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "scale": 0.001,
+        "body_id": 9,
+        "boundary_id": 9
+      },
+      {
+        "mesh": "link_lab.msh",
+        "position": [
+          -0.0,
+          0.0,
+          0.19629999999999986
+        ],
+        "rotation": [
+          0,
+          0,
+          90
+        ],
+        "scale": 0.001,
+        "body_id": 10,
+        "boundary_id": 10
+      }
+    ],
+    "body_params": [
+      {
+        "name": "link_lab",
+        "id": 1,
+        "E": 200000000000.0,
+        "nu": 0.295,
+        "rho": 8050
+      },
+      {
+        "name": "link_lab",
+        "id": 2,
+        "E": 200000000000.0,
+        "nu": 0.295,
+        "rho": 8050
+      },
+      {
+        "name": "link_lab",
+        "id": 3,
+        "E": 200000000000.0,
+        "nu": 0.295,
+        "rho": 8050
+      },
+      {
+        "name": "link_lab",
+        "id": 4,
+        "E": 200000000000.0,
+        "nu": 0.295,
+        "rho": 8050
+      },
+      {
+        "name": "link_lab",
+        "id": 5,
+        "E": 200000000000.0,
+        "nu": 0.295,
+        "rho": 8050
+      },
+      {
+        "name": "link_lab",
+        "id": 6,
+        "E": 200000000000.0,
+        "nu": 0.295,
+        "rho": 8050
+      },
+      {
+        "name": "link_lab",
+        "id": 7,
+        "E": 200000000000.0,
+        "nu": 0.295,
+        "rho": 8050
+      },
+      {
+        "name": "link_lab",
+        "id": 8,
+        "E": 200000000000.0,
+        "nu": 0.295,
+        "rho": 8050
+      },
+      {
+        "name": "link_lab",
+        "id": 9,
+        "E": 200000000000.0,
+        "nu": 0.295,
+        "rho": 8050
+      },
+      {
+        "name": "link_lab",
+        "id": 10,
+        "E": 200000000000.0,
+        "nu": 0.295,
+        "rho": 8050
+      }
+    ],
     "export": {
         "paraview": "sol.vtu",
         "body_ids": true,
